@@ -1,0 +1,27 @@
+import logging
+
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+logger = logging.getLogger(__name__)
+
+async def global_exception_handler(
+    request: Request,
+    exc: Exception
+):
+    logger.exception(
+        "Unexpected error occurred: %s %s",
+        request.method,
+        request.url.path
+    )
+
+    return JSONResponse(
+        status_code=500,
+        content={
+            "success": False,
+            "error": {
+                "code": "INTERNAL_SERVER_ERROR",
+                "message": "An unexpected error occurred. Please try again later."
+            }
+        }
+    )
