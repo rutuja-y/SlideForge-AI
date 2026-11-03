@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+
+# Secrets
+.env
+*.env
+
+# Allow example configuration
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated files
+*.log
